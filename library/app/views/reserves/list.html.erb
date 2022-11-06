@@ -1,0 +1,25 @@
+<div class="main posts-index">
+  <h1>管理者用ページ</h1>
+  <div class="container">
+    予約一覧
+    <% @reserves.each do |reserve| %>
+      <div class="posts-index-item">
+        <div class="post-right">
+          <%= reserve.user.username %>|
+          <%= reserve.book.title %>|
+          <%= link_to("貸出","/reserves/#{reserve.user.id}/lending/#{reserve.book.id}") %>
+        </div>
+      </div>
+    <% end %>
+    貸出一覧
+    <% @circulations.each do |reserve| %>
+      <div class="posts-index-item">
+        <div class="post-right">
+          <%= reserve.user.username %>|
+          <%= reserve.book.title %>|
+          <%= link_to("取消","/reserves/#{reserve.user.id}/cancel/#{reserve.book.id}") %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

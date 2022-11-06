@@ -1,0 +1,33 @@
+<div class="main users-new">
+  <div class="container">
+    <div class="form-heading">ユーザー編集画面</div>
+    <div class="form users-form">
+      <%= form_tag("/users/#{@user.id}/update") do %>
+        <div class="form-body">
+          <% @user.errors.full_messages.each do |message| %>
+            <div class="form-error">
+              <%= message %>
+            </div>
+          <% end %>
+          <p>ユーザー名</p>
+          <input name="username" value="<%= @user.username %>">
+          <p>メールアドレス</p>
+          <input name="email" type="email" value="<%= @user.email %>">
+          <p>パスワード</p>
+          <input name="password" type="password" value="<%= @user.password %>">
+          <p>郵便番号</p>
+          <input name="post_code" value="<%= @user.post_code %>">
+          <p>住所</p>
+          <input name="address" value="<%= @user.address %>">
+          <p>電話番号</p>
+          <input name="phone_number" type="tel" value="<%= @user.phone_number %>">
+          <p>性別（男か女を入力して下さい）</p>
+          <input name="sex" value="<%= @user.sex %>">
+          <p>生年月日</p>
+          <input name="birthday" type="date" value="<%= @user.birthday %>">
+          <input type="submit" value="更新">
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

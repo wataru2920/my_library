@@ -1,0 +1,18 @@
+ja:
+  activerecord:
+    attributes:
+      user:
+        birthday: 誕生日
+        email: メールアドレス
+        post_code: 郵便番号
+        address: 住所
+        phone_number: 電話番号
+        sex: 性別
+        username: ユーザー名
+        password: パスワード
+  views:
+    pagination:
+      first: 最初
+      last: 最後
+      previous: 前
+      next: 次

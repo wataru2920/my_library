@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Library</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <header>
+      <ul class="header-menus">
+        <li>
+          <% if @current_user %>
+            <%= link_to("ログアウト　", "/logout") %>
+            <%= link_to("書籍一覧　", "/books/list") %>
+            <%= link_to("マイページ　", "/users/#{@current_user.id}") %>
+          <% else %>
+            <%= link_to("ログイン　", "/login") %>
+            <%= link_to("新規登録　", "/users/new") %>
+          <% end %>
+          <%= link_to("資料の検索　", "/search") %>
+          <%= link_to("トップページに戻る　", "/top") %>
+        </li>
+      </ul>
+    </header>
+    <% if flash[:notice] %>
+      <div class="flash">
+          <%= flash[:notice] %>
+      </div>
+    <% end %>
+    <%= yield %>
+  </body>
+</html>

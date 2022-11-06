@@ -1,0 +1,21 @@
+<div class="main users-new">
+  <div class="container">
+    <div class="form-heading">資料の検索</div>
+    <div class="form users-form">
+      <%= form_tag("/search") do %>
+        <div class="form-body">
+          <% if @error %>
+            <div class="form-error">
+              <%= @error %>
+            </div>
+          <% end %>
+          <h1>検索フォーム</h1>
+          <input name="search" value="<%= @search %>">
+          <%= select_tag 'method', options_for_select(
+          ['前方一致', '後方一致', '部分一致']) %>
+          <input type="submit" value="検索">
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

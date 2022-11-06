@@ -1,0 +1,50 @@
+<div class="main posts-show">
+  <div class="container">
+    <div class="posts-show-item">
+      <p>
+        <strong>Isbn:</strong>
+        <%= @book.isbn %>
+      </p>
+
+      <p>
+        <strong>著書名:</strong>
+        <%= @book.title %>
+      </p>
+
+      <p>
+        <strong>価格:</strong>
+        <%= number_to_currency(@book.price, unit: '円', precision: 0, format: '%n%u') %>
+      </p>
+
+      <p>
+        <strong>出版社:</strong>
+        <%= @book.publish %>
+      </p>
+
+      <p>
+        <strong>刊行日:</strong>
+        <%= @book.published %>
+      </p>
+
+      <p>
+        <strong>蔵書数:</strong>
+        <%= @book.hold %>
+      </p>
+
+      <div class="post-menus">
+        <% if Reserve.find_by(user_id: @current_user.id, book_id: @book.id,flag: nil) %>
+  　       <%= link_to("予約を取り消す","/reserves/#{@book.id}/destroy",{method: :post, data: {confirm: '予約を取り消しますか？'}}) %>
+        <% elsif Reserve.find_by(user_id: @current_user.id, book_id: @book.id,flag: 1) %>
+          <% t = Reserve.find_by(user_id: @current_user.id, book_id: @book.id,flag: 1).updated_at %>
+          <% t2 = t + 3600 * 24 * 14 %>
+           貸出期限：<%= t2.strftime('%Y/%m/%d') %>
+        <% else %>
+           <% if @book.hold > 0 %>
+  　         <%= link_to("予約","/reserves/#{@book.id}/create",{method: :post, data: {confirm: 'この本を予約しますか？'}}) %>
+           <% end %>
+        <% end %>
+        <%= link_to '書籍一覧へ', '/books/list' %>
+      </div>
+    </div>
+  </div>
+</div>

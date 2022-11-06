@@ -1,0 +1,66 @@
+<div class="main user-show">
+  <div class="container">
+    <div class="user">
+      <p>
+        <strong>ユーザー名:</strong>
+        <%= @user.username %>
+      </p>
+
+      <p>
+        <strong>メールアドレス:</strong>
+        <%= @user.email %>
+      </p>
+
+      <p>
+        <strong>郵便番号:</strong>
+        <%= @user.post_code %>
+      </p>
+
+      <p>
+        <strong>住所:</strong>
+        <%= @user.address %>
+      </p>
+
+      <p>
+        <strong>電話番号:</strong>
+        <%= @user.phone_number %>
+      </p>
+
+      <p>
+        <strong>性別:</strong>
+        <%= @user.sex %>
+      </p>
+
+      <p>
+        <strong>誕生日:</strong>
+        <%= @user.birthday %>
+      </p>
+
+      <div class="posts-index-item">
+        予約一覧
+        <% @reserves.each do |reserve| %>
+          <div class="post-right">
+            <%= link_to("#{reserve.book.id} #{reserve.book.title}", "/books/#{reserve.book.id}") %>
+          </div>
+        <% end %>
+      </div>
+
+      <div class="posts-index-item">
+        貸出一覧
+        <% @circulations.each do |circulation| %>
+          <div class="post-right">
+            <%= link_to("#{circulation.book.id} #{circulation.book.title}", "/books/#{circulation.book.id}") %>
+          </div>
+        <% end %>
+      </div>
+
+      <div class="post-menus">
+        <%= link_to "編集", "/users/#{@user.id}/edit" %>
+        <%= link_to("/users/#{@user.id}/withdraw", method: :post, data: {confirm: '退会しますか?'}) do %>
+          <%= "退会" %>
+        <% end %>
+        <%= link_to '本の一覧へ', '/books/list' %>
+      </div>
+    </div>
+  </div>
+</div>

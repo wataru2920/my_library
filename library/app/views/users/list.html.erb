@@ -1,0 +1,33 @@
+<div class="main posts-index">
+  <h1>管理者用ページ</h1>
+    <h2>ユーザー一覧</h2>
+    <table>
+      <thead>
+          <tr>
+            <th>ユーザー名</th>
+            <th>メールアドレス</th>
+            <th>郵便番号</th>
+            <th>住所</th>
+            <th>電話番号</th>
+          </tr>
+      </thead>
+
+      <tbody>
+        <% @users.each do |user| %>
+          <tr>
+            <td><%= user.username %></td>
+            <td><%= user.email %></td>
+            <td><%= user.post_code %></td>
+            <td><%= user.address %></td>
+            <td><%= user.phone_number %></td>
+            <td>｜</td>
+            <td>
+              <%= link_to("/users/#{user.id}/withdraw", method: :post, data: {confirm: 'このユーザーを退会させますか?'}) do %>
+                <%= "退会" %>
+              <% end %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+</div>

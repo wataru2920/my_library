@@ -1,0 +1,42 @@
+<div class="main users-new">
+  <div class="container">
+    <div class="form-heading">新規ユーザー登録</div>
+    <div class="form users-form">
+      <%= form_tag("/users/create") do %>
+        <div class="form-body">
+          <% @user.errors.full_messages.each do |message| %>
+            <div class="form-error">
+              <%= message %>
+            </div>
+          <% end %>
+          <p>ユーザー名</p>
+          <input name="username" value="<%= @user.username %>">
+          <p>メールアドレス</p>
+          <input name="email" type="email" value="<%= @user.email %>">
+          <p>メールアドレス（確認用）</p>
+          <input name="email_confirmation" type="email" value="<%= @user.email_confirmation %>">
+          <p>パスワード</p>
+          <input name="password" type="password" value="<%= @user.password %>">
+          <p>パスワード（確認用）</p>
+          <input name="password_confirmation" type="password" value="<%= @user.password_confirmation %>">
+          <p>郵便番号</p>
+          <input name="post_code" value="<%= @user.post_code %>">
+          <p>住所</p>
+          <input name="address" value="<%= @user.address %>">
+          <p>電話番号</p>
+          <input name="phone_number" type="tel" value="<%= @user.phone_number %>">
+          <p>性別（男か女を入力して下さい）<br>
+          <input name="sex" value="<%= @user.sex %>">
+          </p>
+          <p>生年月日</p>
+          <input name="birthday" type="date" value="<%= @user.birthday %>">
+          <p>利用規約に同意するか</p>
+          <div class="check">
+            <input type="checkbox" required>
+          </div>
+          <input type="submit" value="新規登録">
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

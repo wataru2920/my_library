@@ -1,0 +1,12 @@
+<div class="main posts-index">
+  <div class="container">
+    <% @books.each do |book| %>
+      <div class="posts-index-item">
+        <div class="post-right">
+          <%= link_to("#{book.id} #{book.title}", "/books/#{book.id}") %>
+        </div>
+      </div>
+    <% end %>
+    <%= paginate @books %>
+  </div>
+</div>
